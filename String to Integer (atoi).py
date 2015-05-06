@@ -26,13 +26,15 @@
 
  Solution: 1. use a index point to go through the input str
            2. use a for-in loop to go through the input str
-           because each element of the input str are highly related. The use of later element is conditioned on the early element. 
+           because each element of the input str are highly related. 
+           The use of later element is conditioned on the early element. 
            In this situation, it is not suitable to use the for-in loop, 
             or it will end up with a lot of if-else conditions and it is very easy to forget one condition.
  In python , the integer value is automatical change to long if the integer is overflow
  In other languge, 1. could use long to avoid overflow and check if there is overflow for the int32
                    2. don't use the long. check the current value is bigger to INT_MAX / 10, 
-                    or current value equal to INT_MAX / 10, the char value >= INT_MAX % 10 or INT_MIN % 10  based on the sign
+                    or current value equal to INT_MAX / 10, 
+                    the char value >= INT_MAX % 10 or INT_MIN % 10  based on the sign
 """
 
 
