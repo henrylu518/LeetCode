@@ -24,7 +24,7 @@
  If no valid conversion could be performed, a zero value is returned. If the correct value is out 
  of the range of representable values, INT_MAX (2147483647) or INT_MIN (-2147483648) is returned.
 
- Solution: 1. use a index point to go through the input str   
+ Solution: 1. use a index point to go through the input str (use a while loop)  
                 (always remember to check the index bound when access member in array)
            2. use a for-in loop to go through the input str
            because each element of the input str are highly related. 
