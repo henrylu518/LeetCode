@@ -63,7 +63,7 @@ class Solution:
         return result
 
 
-    def myAtoi_2(self, str):
+    def myAtoi_bad(self, str):
         INT_MAX = 2147483647
         INT_MIN = -2147483648
         optionalSign = None

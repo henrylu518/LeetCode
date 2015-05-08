@@ -1,30 +1,36 @@
+ """
+ Author:     Henry, henrylu518@gmail.com
+ Date:       May 8, 2015
+ Problem:    Insert Interval
+ Difficulty: Medium
+ Source:     https://oj.leetcode.com/problems/insert-interval/
+ Notes:
+ Given a set of non-overlapping intervals, insert a new interval into the intervals (merge if necessary).
+ You may assume that the intervals were initially sorted according to their start times.
+ Example 1:
+ Given intervals [1,3],[6,9], insert and merge [2,5] in as [1,5],[6,9].
+ Example 2:
+ Given [1,2],[3,5],[6,7],[8,10],[12,16], insert and merge [4,9] in as [1,2],[3,10],[12,16].
+ This is because the new interval [4,9] overlaps with [3,5],[6,7],[8,10].
+"""
 # Definition for an interval.
 # class Interval:
 #     def __init__(self, s=0, e=0):
 #         self.start = s
 #         self.end = e
 
+
 class Solution:
-    # @param {Interval[]} intervals
-    # @param {Interval} newInterval
-    # @return {Interval[]}
     def insert(self, intervals, newInterval):
-        if not intervals: return [newInterval]
-        intervalsLength = len(intervals)
-        i = 0
-        while intervals[i].end < newInterval.start: 
-            i += 1
-            if i >= intervalsLength:
-                intervals.append(newInterval)
-                return intervals
-        newInterval.start = min(newInterval.start, intervals[i].start)
-        intervals.insert(i, newInterval)
-        intervalsLength += 1
-        while i + 1 < intervalsLength:
-            if intervals[i].end >= intervals[i + 1].start:
-                intervals[i].end = max(intervals[i].end, intervals[i + 1].end)
-                intervals.pop(i + 1)
-                intervalsLength -= 1
+        return self.merge(intervals + [newInterval])
+        
+    def merge(self, intervals):
+        if intervals == []: return []
+        intervals = sorted(intervals, key = lambda m : m.start)
+        result = [intervals[0]]
+        for i in xrange(1, len(intervals)):
+            if result[-1].end >= intervals[i].start:
+                result[-1].end = max(result[-1].end, intervals[i].end)
             else:
-                return intervals
-        return intervals
+                result.append(intervals[i])
+        return result

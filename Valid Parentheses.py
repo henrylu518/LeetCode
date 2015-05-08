@@ -16,16 +16,11 @@ class Solution:
     # @param {string} s
     # @return {boolean}
     def isValid(self, s):
-        pairOfParentheses = {')' : '(', '}' : '{', ']' : '['}
+        pairOfParentheses = {'(' : ')', '{' : '}', '[' : ']'}
         stack = []
         for char in s:
-            if char in pairOfParentheses.values():
+            if char in pairOfParentheses:
                 stack.append(char)
-            elif char in pairOfParentheses.keys():
-                if not stack:
-                    return False
-                else:
-                    last = stack.pop()
-                    if char in pairOfParentheses and last != pairOfParentheses[char]:
-                        return False
+            elif stack == [] or char != pairOfParentheses[stack.pop()]:
+                return False
         return stack == []

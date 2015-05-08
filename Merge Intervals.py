@@ -12,9 +12,6 @@
 
  Solution: 1. Sort in ascending order of 'start'.
            2. When two intervals have overlapping area, merge them.
-                while i < len(intervals) - 1: this will be much slower
-                We could track the intervalsLength by ourself. When there is a merge,
-                then decrease the intervalsLength
 
 """
 
@@ -29,14 +26,12 @@ class Solution:
     # @param {Interval[]} intervals
     # @return {Interval[]}
     def merge(self, intervals):
+        if intervals == []: return []
         intervals = sorted(intervals, key = lambda m : m.start)
-        i = 0
-        intervalsLength = len(intervals)
-        while i < intervalsLength - 1:
-            if intervals[i + 1].start <= intervals[i].end:
-                intervals[i].end = max(intervals[i].end, intervals[i + 1].end)
-                intervals.pop(i + 1)
-                intervalsLength -= 1
+        result = [intervals[0]]
+        for i in xrange(1, len(intervals)):
+            if result[-1].end >= intervals[i].start:
+                result[-1].end = max(result[-1].end, intervals[i].end)
             else:
-                i += 1
-        return intervals
+                result.append(intervals[i])
+        return result
