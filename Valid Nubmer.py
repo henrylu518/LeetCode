@@ -23,7 +23,7 @@ specical char:  "e", ".", "+", "-"
 1. check " "     (while)
 2. check "+", "-"  (if)
 3. check digit   (while)
-4. check "."  (elif)
+4. check "."  (if)
 	check digit (while)
 5. check "e"   (if)
 	before "e": there should be digits
