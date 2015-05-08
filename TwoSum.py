@@ -21,14 +21,8 @@ class Solution:
     # @param {integer} target
     # @return {integer[]}
     def twoSum(self, nums, target):
-        numsDict = {}
-        for (index, num) in enumerate(nums, 1):
-            numsDict[num] = numsDict.get(num, []) + [index]
-        for (num, index) in numsDict.items():
-            remain = target - num
-            if remain in numsDict:
-                if remain == num:
-                    return numsDict[num]
-                else:
-                    return sorted([index[0] , numsDict[remain][0] ])
-        return None
+        lookUp = {}
+        for (i, num) in enumerate(nums, 1):
+            if (target - num) in lookUp:
+                return (lookUp[target - num], i)
+            lookUp[num] = i

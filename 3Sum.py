@@ -19,24 +19,28 @@
             and use sorted array to avoid duplicate work 
 """
 
+
 class Solution:
     # @param {integer[]} nums
     # @return {integer[][]}
     def threeSum(self, nums):
-        numsDict = {}
-        for num in nums:
-            numsDict[num] = numsDict.get(num, 0) + 1
         nums = sorted(nums)
-        resultSet = set([])
-        for i in xrange(len(nums)):
-            for j in xrange(i + 1, len(nums)):
-                x, y = nums[i], nums[j]
-                remain = -(x + y)
-                if remain == y:
-                    # consider duplicate value: (x = y = remain), or (x != y and y = remain)
-                    if (x == y and numsDict[remain] >= 3) or (x!= y and numsDict[remain] >= 2):
-                        resultSet.add((x,y,remain))
-                elif remain > y:
-                    if remain in numsDict:
-                        resultSet.add((x,y,remain))
-        return [e for e in resultSet]
+        numsLength = len(nums)
+        result, i = [], 0
+        while i < numsLength - 2:
+            j = i + 1
+            k = numsLength - 1
+            while j < k:
+                if nums[i] + nums[j] + nums[k] < 0:
+                    j += 1
+                elif nums[i] + nums[j] + nums[k] > 0:
+                    k -= 1
+                else:
+                    result.append([nums[i],nums[j],nums[k]])
+                    j, k = j + 1, k - 1
+                    while j < k and nums[j] == nums[j - 1] : j += 1
+                    while j < k and nums[k] == nums[k + 1] : k -= 1
+            i += 1
+            while i < len(nums) - 2 and nums[i] == nums[i - 1]:
+                i += 1
+        return result
