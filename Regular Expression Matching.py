@@ -21,7 +21,7 @@
  isMatch("aab", "c*a*b") ? true
 
  Solution: Both of the two solutions are the same. Just re-organize the code. 
-            Solution_2 is much easy to read.
+            Solution_2 is easier to read.
  The reason why there is a pre-process of the p is for the case of 
  isMatch("aaaaaaaaaaaaaaaaaab", "a*a*a*a*a*a*a*a*a*a*a*a*a*a*a*a*a*b*b*b*c")
 """
