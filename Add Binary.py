@@ -18,7 +18,7 @@ class Solution:
     # @param {string} a
     # @param {string} b
     # @return {string}
-    def addBinary(self, a, b):
+    def addBinary_1(self, a, b):
         i, j, carry = len(a) - 1, len(b) - 1, 0
         result = ""
         while i >= 0 or j >= 0:
@@ -34,3 +34,8 @@ class Solution:
             result = str(current) + result
         if carry: result = "1" + result
         return result
+
+    def addBinary_2(self, a, b):
+        """ Use build in functions """
+        return bin(int(a, 2) + int(b, 2)).split('b')[1]
+

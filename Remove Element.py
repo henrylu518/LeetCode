@@ -11,17 +11,16 @@
  Solution: 
  """
 
-lass Solution:
+class Solution:
     # @param {integer[]} nums
     # @param {integer} val
     # @return {integer}
     def removeElement(self, nums, val):
-        numsLen = len(nums)
-        i = 0
-        while i < numsLen:
+        last, i = len(nums) - 1, 0
+        while i <= last:
             if nums[i] == val:
-                nums[i], nums[numsLen - 1] = nums[numsLen - 1], nums[i]
-                numsLen -= 1
+                nums[i], nums[last] = nums[last], nums[i]
+                last -= 1
             else:
                 i += 1
-        return numsLen
+        return last + 1
