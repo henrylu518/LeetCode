@@ -13,8 +13,8 @@
  The right subtree of a node contains only nodes with keys greater than the node's key.
  Both the left and right subtrees must also be binary search trees.
 
- Solution: Recursion.  Add lowerBound and upperBound. O(n)
-                      
+ Solution: 1. Recursion.  Add lowerBound and upperBound. O(n)
+           2. inorder tree search           
  
  """
 
@@ -38,3 +38,17 @@ class Solution:
             return isBSTInRange(root.left, lowerBound, rootVal) and \
                 isBSTInRange(root.right, rootVal, upperBound)
         return isBSTInRange(root, -float("inf"), float("inf"))
+
+
+    def isValidBST(self, root):
+        def inorder(root, prev):
+            if root == None: return True
+            if not inorder(root.left, prev):
+                return False
+            if prev[0] and root.val <= prev[0].val:
+                return False
+            prev[0] = root
+            return inorder(root.right, prev)
+            
+        prev = [None]
+        return inorder(root, prev)

@@ -1,41 +1,43 @@
+"""
+ Author:     Henry, henrylu518@gmail.com
+ Date:       May 14, 2015
+ Problem:    Palindrome Partitioning
+ Difficulty: Easy
+ Source:     http://leetcode.com/onlinejudge#question_131
+ Notes:
+ Given a string s, partition s such that every substring of the partition is a palindrome.
+ Return all possible palindrome partitioning of s.
+ For example, given s = "aab",
+ Return
+ [
+  ["aa","b"],
+  ["a","a","b"]
+ ]
 
+ Solution: ...
+ """
         
 class Solution:
     # @param s, a string
     # @return a list of lists of string
+    def isPalindrome(self, s):
+        for i in xrange(len(s) / 2):
+            if s[i] != s[-(i + 1)]:
+                return False
+        return True
+        
     def partition(self, s):
-        
-        def isPalindrome(i, j):
-            while i < j:
-                if s[i] != s[j]:
-                    return False
-                i += 1
-                j -= 1
-            return True
-        
-        def allPalindromeLastWith(j):
-            palindromes = []
-            for i in xrange(j + 1):
-                if isPalindrome(i, j):
-                    palindromes.append((i,j))
-            return palindromes
-       
         sLen = len(s)
-        table = []
-        for j in xrange(sLen):
-            palindromes = allPalindromeLastWith(j)
-            table.append([])
-            for (start, end) in palindromes:
-                if start == 0:
-                    table[j].append([(start, end)])
-                else:
-                    table[j] += [e + [(start, end)] for e in table[start - 1]]  
-
+        
+        def partitionRecur(result, current, s, i):
+            if i == sLen: 
+                result.append(current)
+            else:
+                for j in xrange(i,sLen):
+                    if self.isPalindrome(s[i:j + 1]):
+                        partitionRecur(result, current + [s[i:j + 1]], s, j + 1)
+        
         result = []
-
-        for onePartition in table[sLen - 1]:
-            current = []
-            for (start, end) in onePartition:
-                current.append(s[start:end + 1])
-            result.append(current)
+        partitionRecur(result, [], s, 0)
         return result
+
