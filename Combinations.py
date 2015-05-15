@@ -1,5 +1,5 @@
 """
- Author:     Henry, henrylu@gmail.com
+ Author:     Henry, henrylu518@gmail.com
  Date:       May 13, 2015
  Problem:    Combinations
  Difficulty: Easy
