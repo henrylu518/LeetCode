@@ -20,7 +20,7 @@
  (-2,  0, 0, 2)
 
  Solution: Similar to 3Sum, 2Sum.
-            Add constrains to make it faster.
+            Add constrains to make it faster. (from 1000 ms to 200 ms)
  """
 
 class Solution:
